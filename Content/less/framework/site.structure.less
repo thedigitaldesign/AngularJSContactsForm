@@ -1,0 +1,16 @@
+﻿//-- Bootstrap
+@import "../bootstrap/variables";
+//-- Bootstrap override
+@import "bootstrap/variables";
+
+.ng-invalid {
+    &.ng-dirty {
+        border-color: @brand-danger;
+    }
+}
+
+.ng-valid {
+    &.ng-dirty {
+        border-color: @brand-success;
+    }
+}

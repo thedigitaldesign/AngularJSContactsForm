@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="app">
+<head>
+    <title>Needle Assessment - Joshua Christensen</title>
+
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css' />
+    <link href="Content/css/site.base.min.css" rel="stylesheet" />
+</head>
+<body>
+    <!--
+        1. Create a GitHub account or use his existing one
+        2. Create a project that does the following:
+        3. Create a single web page application using AngularJS.
+
+        Application has two parts.
+
+
+        - Part 1 - A modal dialog containing a simple input form.
+
+        The form should accept the following fields:
+
+            · Name
+            · Email
+
+        The form fields should be validated before they are accepted.
+
+
+        - Part 2 - A table showing rows of data.
+
+        Table should contain date the record was added, name and email.
+        Every new form submit should add the submitted data to the table.
+    -->
+
+    <div class="content" ng-controller="ContactController as contacts">
+        <div class="row">
+            <div class="well col-xs-8 margin-top-40 center clearfix">
+                <div class="col-xs-4">
+                    <form name="NewContacts" ng-submit="NewContacts.$valid && contacts.AddContacts(contacts)">
+                        <ul>
+                            <li>
+                                <label>Name</label>
+                                <input type="text" class="form-control" ng-model="contacts.info.name" required />
+                            </li>
+                            <li>
+                                <label>Email</label>
+                                <input type="email" class="form-control" ng-model="contacts.info.email" required />
+                            </li>
+                        </ul>
+
+                        <input type="submit" value="Add contact" class="btn btn-primary pull-right margin-top-10" />
+                        <button type="button" class="btn btn-default pull-right margin-top-10 margin-right-10" data-toggle="modal" data-target="#InputModal">Input modal</button>
+                    </form>
+                </div>
+                <div class="col-xs-8">
+                    <table class="col-xs-12 no-padding">
+                        <tr>
+                            <th>Date created</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                        <tr ng-repeat="item in contacts.list">
+                            <td>
+                                {{item.created}}
+                            </td>
+                            <td>
+                                {{item.name}}
+                            </td>
+                            <td>
+                                {{item.email}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="InputModal" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="oi oi-x"></i></button>
+                        <h4 class="modal-title" id="myModalLabel">Add contacts</h4>
+                    </div>
+
+                    <form name="ModalNewContacts" ng-submit="ModalNewContacts.$valid && contacts.ModalAddContacts(contacts)">
+                        <div class="modal-body">
+                            <ul>
+                                <li>
+                                    <label>Name</label>
+                                    <input type="text" class="form-control" ng-model="contacts.modal.name" required />
+                                </li>
+                                <li>
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" ng-model="contacts.modal.email" required />
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Add contact</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <!-- begin:App -->
+    <script src="Scripts/angularjs/app/app.js"></script>
+    <!-- end:App -->
+    <!-- begin:Controllers -->
+    <script src="Scripts/angularjs/app/controllers/contact-list.js"></script>
+    <!-- end:Controllers -->
+</body>
+</html>
